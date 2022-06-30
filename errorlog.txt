@@ -1,0 +1,1 @@
+Date:2022-06-30 14:12:22.390273| Linha: 400| Erro: Unable to allocate 188. MiB for an array with shape (3408, 2416, 3) and data type float64

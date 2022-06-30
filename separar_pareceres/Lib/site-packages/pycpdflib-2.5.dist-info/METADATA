@@ -1,0 +1,72 @@
+Metadata-Version: 2.1
+Name: pycpdflib
+Version: 2.5
+Summary: Python interface to Coherent PDF Tools
+Home-page: https://coherentpdf.com/
+Author: Coherent Graphics Ltd
+Author-email: contact@coherentgraphics.co.uk
+License: UNKNOWN
+Project-URL: Bug Tracker, https://github.com/coherentgraphics/python-libcpdf/issues
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+License-File: LICENSE
+
+# pycpdflib
+
+pycpdflib is a Python interface to the cpdf pdf tools. More information,
+including commercial licenses can be found at <https://www.coherentpdf.com/>
+
+The non-commercial home of pycpdf is <http://community.coherentpdf.com/>
+
+
+Functionality
+-------------
+
+* Quality Split and Merge, keeping bookmarks. Extract pages. Split on Bookmarks.
+* Encrypt and Decrypt (including AES 128 and AES 256 encryption)
+* Scale, rotate, crop and flip pages. Scale pages to fit
+* Copy, Remove and Add bookmarks
+* Stamp logos, watermarks, page numbers and multiline text. Transparency.
+* Supports Unicode UTF8 text input and output
+* Put multiple pages on a single page
+* List, copy, or remove annotations
+* Read and set document information and metadata
+* Add and remove file attachments to document or page.
+* Thicken hairlines, blacken text, make draft documents
+* Reconstruct malformed files
+* Detect missing fonts, low resolution images
+
+
+Obtaining the DLLs
+------------------
+
+The DLLs `pycpdflib` and `cpdflib` are required. They are free for
+non-commercial use. Commercial use requires a license. The DLLs can be obtained
+here:
+
+<https://github.com/coherentgraphics/cpdflib-binary>
+
+
+Documentation
+-------------
+
+Full manual (required reading): <https://coherentpdf.com/pycpdflibmanual.pdf>
+
+Follow the instructions at the end of Chapter 1 to load the DLLs and write your
+first pycpdf program.
+
+Quick reference API docs: <https://python-libcpdf.readthedocs.io/en/latest/>
+
+
+Contact
+-------
+
+<mailto:contact@coherentgraphics.co.uk>
+
+Bug report: <https://github.com/coherentgraphics/python-libcpdf>
+
+
