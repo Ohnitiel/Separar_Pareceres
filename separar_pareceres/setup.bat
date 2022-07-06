@@ -1,0 +1,1 @@
+pyinstaller main.py -w -y -n "Separar Pareceres" --distpath "../Separar Pareceres" --workpath %TEMP%/build --clean --add-data "../../utilities/libpycpdf/";"dll/" --add-data "../../utilities/poppler/";"poppler/" --add-data %LOCALAPPDATA%/Programs/Tesseract-OCR/;"Tesseract-OCR/"

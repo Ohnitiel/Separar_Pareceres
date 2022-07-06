@@ -12,7 +12,7 @@ from PyQt5.QtGui import QKeySequence, QPixmap
 from pdf2image import convert_from_path
 from PIL.ImageQt import ImageQt
 
-from separar_pareceres.utils import TableWidget
+# from .utils import TableWidget
 
 
 class VerificationDialog(QDialog):

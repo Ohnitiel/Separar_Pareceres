@@ -1,0 +1,1 @@
+Date:2022-07-05 12:39:10.824620| Linha: 401| Erro: Cannot handle this data type: (1, 1, 3), <i4

@@ -4,9 +4,10 @@ import regex
 import string
 import pytesseract
 import pycpdflib as pypdf
+import numpy as np
 from datetime import datetime
 from time import sleep
-from PIL import ImageFilter
+from PIL import ImageFilter, Image
 from pytesseract import image_to_string
 from pdf2image import convert_from_path
 from PyQt5.QtWidgets import (
@@ -18,7 +19,7 @@ from PyQt5.QtCore import Qt, QObject, QThread, QThreadPool, pyqtSignal
 from PyQt5.QtGui import QKeySequence
 
 from utils.unskewImg import unskewImg
-from dialogs import ManualInputDialog, VerificationDialog
+from dialogs import ManualInputDialog
 
 clear_chars = string.printable[62:77] + string.printable[79:94]
 
@@ -439,6 +440,10 @@ class Worker(QObject):
             self.label.emit(f"Página {page} de {len(imgs)}")
             self.text.emit(f"<b>Alinhando página:</b> {page}")
             image = unskewImg(img)
+            im_array = np.array(image)
+            im_array[im_array.sum(axis=2) <= 600] = 0
+            im_array[im_array.sum(axis=2) > 600] = 255
+            image = Image.fromarray(im_array.astype('uint8'))
             image = image.crop((0, 130*self.dpi/200, image.width, 460*self.dpi/200)).filter(ImageFilter.SMOOTH_MORE)
             
             self.text.emit(f"<b>Identificando texto da página:</b> {page}")
@@ -449,7 +454,7 @@ class Worker(QObject):
             try:
                 registro = regex.search(r"(?i)(Registro:|Atendimento) (\d{7}|\d\.\d{3}\.\d{3})", txt)
                 registro = registro[2].replace(".", "")
-                nome = regex.search(r"(?i)iente:? ?([A-Za-z ]+)(\s|Atendimento|Registro)", txt)
+                nome = regex.search(r"(?i)iente:? ?([A-zÀ-ú ]+)(\s|Atendimento|Registro)", txt)
                 nome = regex.sub("\s+Atendimento", "", nome[1]).strip()
             except TypeError:
                 self.waiting = True
