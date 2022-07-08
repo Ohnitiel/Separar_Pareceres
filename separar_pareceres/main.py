@@ -19,7 +19,7 @@ from PyQt5.QtCore import Qt, QObject, QThread, QThreadPool, pyqtSignal
 from PyQt5.QtGui import QKeySequence
 
 from utils.unskewImg import unskewImg
-from dialogs import ManualInputDialog
+from dialogs.ManualInputDialog import ManualInputDialog
 
 clear_chars = string.printable[62:77] + string.printable[79:94]
 
@@ -414,8 +414,20 @@ class Worker(QObject):
         outputs = {}
         pages = 0
         imgs = [ ]
-        i = 0
         merged = [ ]
+        i = 0
+        # if len(self.pdffile > 3):
+        #     for i in range(0, len(self.pdffile), 3):
+        #         for f in self.pdffile[i:i+2]:
+        #             i += 1
+        #             file = pypdf.fromFile(f, '')
+        #             pages += pypdf.pages(file)
+        #             self.label.emit(f"Lendo o arquivo selecionado {self.pdffile.index(f)+1}/{len(self.pdffile)}")
+        #             imgs.extend(convert_from_path(f, dpi=self.dpi, poppler_path=poppler_path))
+        #             self.progress.emit(i/len(self.pdffile)*40)
+        #             merged.append(file)
+        #         file = pypdf.mergeSimple(merged)
+        # else:
         for f in self.pdffile:
             i += 1
             file = pypdf.fromFile(f, '')
@@ -441,8 +453,8 @@ class Worker(QObject):
             self.text.emit(f"<b>Alinhando página:</b> {page}")
             image = unskewImg(img)
             im_array = np.array(image)
-            im_array[im_array.sum(axis=2) <= 600] = 0
-            im_array[im_array.sum(axis=2) > 600] = 255
+            im_array[im_array.sum(axis=2) <= 666] = 0
+            im_array[im_array.sum(axis=2) > 666] = 255
             image = Image.fromarray(im_array.astype('uint8'))
             image = image.crop((0, 130*self.dpi/200, image.width, 460*self.dpi/200)).filter(ImageFilter.SMOOTH_MORE)
             
